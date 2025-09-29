@@ -49,11 +49,6 @@ package colorRule {
     }
     ColorRule <|.. NoColorRule
 
-    class RandomColorRule {
-        colorAtBirth(List<Color> neighboursColors)
-    }
-    ColorRule <|.. RandomColorRule
-
     class ImmigrationColorRule {
         colorAtBirth(List<Color> neighboursColors)
     }
@@ -117,6 +112,27 @@ package color {
     Color <|.. White
 }
 
+package display {
+    interface Display {
+        display()
+    }
+
+    class LivingWhiteDeadBlackDisplay {
+        display()
+    }
+    Display <|.. LivingWhiteDeadBlackDisplay
+
+    class LivingBlackDeadWhiteDisplay {
+        display()
+    }
+    Display <|.. LivingBlackDeadWhiteDisplay
+
+    class RandomColorDisplay {
+        display()
+    }
+    Display <|.. RandomColorDisplay
+}
+
 class Cell {
     StateBehavior state
     Color color
@@ -145,6 +161,7 @@ class GameOfLife {
     Board board
     Rule rule
     ColorRule colorRule
+    Display display
 
     GameOfLife(int rows, int columns)
     computeNextGeneration()
@@ -155,7 +172,7 @@ class GameOfLife {
 GameOfLife::board -- Board
 GameOfLife::rule --- Rule
 GameOfLife::colorRule --- ColorRule
-
+GameOfLife::display --- Display
 
 @enduml
 
