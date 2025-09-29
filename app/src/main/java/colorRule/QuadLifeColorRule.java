@@ -8,6 +8,7 @@ public class QuadLifeColorRule implements ColorRule {
 
     @Override
     public Color colorAtBirth(List<Color> neighboursColors) {
+        //TODO
         return null;
     }
 }
