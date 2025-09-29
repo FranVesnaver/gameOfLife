@@ -3,7 +3,7 @@ import java.util.Scanner;
 public class App {
 
     public static void main(String[] args) throws InterruptedException {
-        GameOfLife gameOfLife = new BetterGameOfLife(10,10);
+        GameOfLife gameOfLife = new GameOfLife(10,10);
 //        gameOfLife.setRule(new HighLifeRule());
 //        gameOfLife.setRule(new BreederRule());
 //        gameOfLife.setRule(new DiffusionRule());

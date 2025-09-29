@@ -17,7 +17,6 @@ class ColorRuleTest {
 
     private static Stream<Arguments> colorAtBirthTestCaseProvider() {
         NoColorRule noColor = new NoColorRule();
-        RandomColorRule randomColor = new RandomColorRule();
         ImmigrationColorRule immigrationColor = new ImmigrationColorRule();
 
         Color white = new White();
