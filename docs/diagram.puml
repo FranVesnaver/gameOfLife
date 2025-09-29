@@ -1,0 +1,161 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+package rule {
+    interface Rule {
+        survives(int livingNeighbors)
+        born(int livingNeighbors)
+    }
+
+    class ClassicRule {
+        survives(int livingNeighbors)
+        born(int livingNeighbors
+    }
+    Rule <|.. ClassicRule
+
+    class HighLifeRule {
+        survives(int livingNeighbors)
+        born(int livingNeighbors)
+    }
+    Rule <|.. HighLifeRule
+
+    class BreederRule {
+        survives(int livingNeighbors)
+        born(int livingNeighbors)
+    }
+    Rule <|.. BreederRule
+
+    class DiffusionRule {
+        survives(int livingNeighbors)
+        born(int livingNeighbors)
+    }
+    Rule <|.. DiffusionRule
+
+    class LifeWithoutDeathRule {
+        survives(int livingNeighbors)
+        born(int livingNeighbors)
+    }
+    Rule <|.. LifeWithoutDeathRule
+
+}
+
+package colorRule {
+    interface ColorRule {
+        colorAtBirth(List<Color> neighboursColors)
+    }
+
+    class NoColorRule {
+        colorAtBirth(List<Color> neighboursColors)
+    }
+    ColorRule <|.. NoColorRule
+
+    class RandomColorRule {
+        colorAtBirth(List<Color> neighboursColors)
+    }
+    ColorRule <|.. RandomColorRule
+
+    class ImmigrationColorRule {
+        colorAtBirth(List<Color> neighboursColors)
+    }
+    ColorRule <|.. ImmigrationColorRule
+
+    class QuadLifeColorRule {
+        colorAtBirth(List<Color> neighboursColors)
+    }
+    ColorRule <|.. QuadLifeColorRule
+}
+
+package stateBehavior {
+    interface StateBehavior{
+        isAlive()
+    }
+
+    class Alive {
+        isAlive()
+    }
+    StateBehavior <|.. Alive
+
+    class Dead {
+        isAlive()
+    }
+    StateBehavior <|.. Dead
+}
+
+package color {
+    interface Color{
+        getColor()
+    }
+
+    class Red{
+        getColor()
+    }
+    Color <|.. Red
+
+    class Blue{
+        getColor()
+    }
+    Color <|.. Blue
+
+    class Green{
+        getColor()
+    }
+    Color <|.. Green
+
+    class Yellow{
+        getColor()
+    }
+    Color <|.. Yellow
+
+    class Magenta{
+        getColor()
+    }
+    Color <|.. Magenta
+
+    class White{
+        getColor()
+    }
+    Color <|.. White
+}
+
+class Cell {
+    StateBehavior state
+    Color color
+
+    Cell(StateBehavior state, Color color)
+    setState()
+    setColor()
+    getColor()
+}
+Cell::state -- StateBehavior
+Cell::color -- Color
+
+class Board {
+    int rows
+    int columns
+    Cell[][] grid
+
+    Board(int rows, int columns)
+    getCellAt(int row, int column)
+    setCellAt(int row, int column, Cell cell)
+    getLivingNeighbours(int row, int column)
+}
+Board - "*" Cell
+
+class GameOfLife {
+    Board board
+    Rule rule
+    ColorRule colorRule
+
+    GameOfLife(int rows, int columns)
+    computeNextGeneration()
+    displayGrid()
+    setLivingCell(int row, int column)
+    setDeadCell(int row, int column)
+}
+GameOfLife::board -- Board
+GameOfLife::rule --- Rule
+GameOfLife::colorRule --- ColorRule
+
+
+@enduml
+
