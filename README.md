@@ -33,6 +33,10 @@ It was implemented in the context of the "Software Engineering" course of the "C
    ```bash
    ./gradlew run
    ```
+   To run the program without gradle messages:
+   ```bash
+   ./gradlew -q --console plain run
+   ```
 
 ## Examples
 At this moment, running the application shows an example of a glider and a blinker on a 10x10 grid and it can not be changed.
