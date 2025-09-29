@@ -2,7 +2,7 @@
 
 This project is an implementation of **Conway's Game of Life**, a cellular automaton devised by mathematician John Horton Conway in 1970.  
 It simulates the evolution of a grid of cells according to simple rules, producing complex and sometimes unexpected behaviors.
-It was implemented in the context of the "Software Engineering" course of the "Computer Analyst" program at the "National University of Río Cuarto"
+It was implemented in the context of the Software Engineering course of the Computer Analyst program at the National University of Río Cuarto.
 ## Features
 - Configurable grid size.
 - Step-by-step evolution of the automaton.
