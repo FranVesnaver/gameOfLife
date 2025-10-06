@@ -3,7 +3,6 @@ package gameoflife;
 import gameoflife.observer.Observer;
 import gameoflife.observer.Subject;
 import gameoflife.color.Color;
-import gameoflife.display.Display;
 import gameoflife.rule.ClassicRule;
 import gameoflife.colorRule.ColorRule;
 import gameoflife.colorRule.NoColorRule;
@@ -19,7 +18,6 @@ public class GameOfLife implements Subject {
     private Board board;
     private Rule rule;
     private ColorRule colorRule;
-    private Display display;
 
     private List<Observer> observers;
 
@@ -37,7 +35,7 @@ public class GameOfLife implements Subject {
         for (int i = 0; i < oldBoard.getRows(); i++) {
             for (int j = 0; j < oldBoard.getColumns(); j++) {
 
-                if (oldBoard.getCellAt(i, j).state.isAlive()) {
+                if (oldBoard.getCellAt(i, j).getState().isAlive()) {
                     if (!rule.survives(oldBoard.getLivingNeighbours(i, j)))
                         setDeadCell(i, j);
                     else
@@ -51,10 +49,6 @@ public class GameOfLife implements Subject {
             }
         }
         notifyObservers();
-    }
-
-    public void displayGrid() {
-        System.out.println(board);
     }
 
     public void setLivingCell(int row, int column) {
@@ -106,6 +100,6 @@ public class GameOfLife implements Subject {
     @Override
     public void notifyObservers() {
         for (Observer o : observers)
-            o.update();
+            o.update(board);
     }
 }

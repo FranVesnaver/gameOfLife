@@ -5,8 +5,8 @@ import gameoflife.color.White;
 import gameoflife.stateBehavior.StateBehavior;
 
 public class Cell {
-    StateBehavior state;
-    Color color;
+    private StateBehavior state;
+    private Color color;
 
     public Cell(StateBehavior state, Color color) {
         this.state = state;
@@ -25,4 +25,7 @@ public class Cell {
         this.color = color;
     }
 
+    public StateBehavior getState() {
+        return state;
+    }
 }

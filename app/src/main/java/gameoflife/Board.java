@@ -30,7 +30,7 @@ public class Board {
         List<Cell> neighbours = getCellNeighbours(row, column);
         int result = 0;
         for (Cell cell : neighbours)
-            if (cell.state.isAlive()) result++;
+            if (cell.getState().isAlive()) result++;
 
         return result;
     }
@@ -80,6 +80,10 @@ public class Board {
         return grid;
     }
 
+    public void setGrid(Cell[][] grid) {
+        this.grid = grid;
+    }
+
     @Override
     public String toString() {
         String defaultColor = "\u001B[37m";
@@ -87,8 +91,8 @@ public class Board {
 
         for (int i = 0; i < columns; i++) {
             for (int j = 0; j < rows; j++) {
-                if (getCellAt(i,j).state.isAlive()) {
-                    String color = getCellAt(i,j).color.getColor();
+                if (getCellAt(i,j).getState().isAlive()) {
+                    String color = getCellAt(i,j).getColor().getColor();
                     string.append(color).append(" ☻ ").append(defaultColor);
                 }
                 else
