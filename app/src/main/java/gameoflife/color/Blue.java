@@ -5,4 +5,9 @@ public class Blue extends Color {
     public String getColor() {
         return "\u001B[34m";
     }
+
+    @Override
+    public String toString() {
+        return "Blue";
+    }
 }

@@ -5,4 +5,9 @@ public class Magenta extends Color {
     public String getColor() {
         return "\u001B[35m";
     }
+
+    @Override
+    public String toString() {
+        return "Magenta";
+    }
 }
