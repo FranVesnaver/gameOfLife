@@ -1,4 +1,4 @@
-package gameoflife.display;
+package gameoflife.display.boarddisplay;
 
 import gameoflife.Board;
 import gameoflife.color.*;
