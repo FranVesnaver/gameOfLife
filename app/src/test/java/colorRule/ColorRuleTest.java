@@ -1,9 +1,12 @@
 package colorRule;
 
-import color.Blue;
-import color.Color;
-import color.Red;
-import color.White;
+import gameoflife.color.Blue;
+import gameoflife.color.Color;
+import gameoflife.color.Red;
+import gameoflife.color.White;
+import gameoflife.colorRule.ColorRule;
+import gameoflife.colorRule.ImmigrationColorRule;
+import gameoflife.colorRule.NoColorRule;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
