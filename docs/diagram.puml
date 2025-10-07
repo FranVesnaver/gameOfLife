@@ -1,178 +1,203 @@
 @startuml
 'https://plantuml.com/class-diagram
 
-package rule {
-    interface Rule {
-        survives(int livingNeighbors)
-        born(int livingNeighbors)
+package gameoflife {
+
+    package rule {
+        interface Rule {
+            survives(int livingNeighbors)
+            born(int livingNeighbors)
+        }
+
+        class ClassicRule implements Rule {
+            survives(int livingNeighbors)
+            born(int livingNeighbors
+        }
+
+        class HighLifeRule implements Rule {
+            survives(int livingNeighbors)
+            born(int livingNeighbors)
+        }
+
+        class BreederRule implements Rule {
+            survives(int livingNeighbors)
+            born(int livingNeighbors)
+        }
+
+        class DiffusionRule implements Rule {
+            survives(int livingNeighbors)
+            born(int livingNeighbors)
+        }
+
+        class LifeWithoutDeathRule implements Rule {
+            survives(int livingNeighbors)
+            born(int livingNeighbors)
+        }
     }
 
-    class ClassicRule {
-        survives(int livingNeighbors)
-        born(int livingNeighbors
-    }
-    Rule <|.. ClassicRule
+    package colorRule {
+        interface ColorRule {
+            colorAtBirth(List<Color> neighboursColors)
+        }
 
-    class HighLifeRule {
-        survives(int livingNeighbors)
-        born(int livingNeighbors)
-    }
-    Rule <|.. HighLifeRule
+        class NoColorRule implements ColorRule {
+            colorAtBirth(List<Color> neighboursColors)
+        }
 
-    class BreederRule {
-        survives(int livingNeighbors)
-        born(int livingNeighbors)
-    }
-    Rule <|.. BreederRule
+        class ImmigrationColorRule implements ColorRule  {
+            colorAtBirth(List<Color> neighboursColors)
+        }
 
-    class DiffusionRule {
-        survives(int livingNeighbors)
-        born(int livingNeighbors)
-    }
-    Rule <|.. DiffusionRule
-
-    class LifeWithoutDeathRule {
-        survives(int livingNeighbors)
-        born(int livingNeighbors)
-    }
-    Rule <|.. LifeWithoutDeathRule
-
-}
-
-package colorRule {
-    interface ColorRule {
-        colorAtBirth(List<Color> neighboursColors)
+        class QuadLifeColorRule implements ColorRule  {
+            colorAtBirth(List<Color> neighboursColors)
+        }
     }
 
-    class NoColorRule {
-        colorAtBirth(List<Color> neighboursColors)
-    }
-    ColorRule <|.. NoColorRule
+    package stateBehavior {
+        abstract StateBehavior{
+            abstract isAlive()
+            abstract toString()
+            equals()
+            hashCode()
+        }
 
-    class ImmigrationColorRule {
-        colorAtBirth(List<Color> neighboursColors)
-    }
-    ColorRule <|.. ImmigrationColorRule
+        class Alive extends StateBehavior {
+            isAlive()
+            toString()
+        }
 
-    class QuadLifeColorRule {
-        colorAtBirth(List<Color> neighboursColors)
-    }
-    ColorRule <|.. QuadLifeColorRule
-}
-
-package stateBehavior {
-    interface StateBehavior{
-        isAlive()
+        class Dead extends StateBehavior {
+            isAlive()
+            toString()
+        }
     }
 
-    class Alive {
-        isAlive()
-    }
-    StateBehavior <|.. Alive
+    package color {
+        abstract Color {
+            abstract getColor()
+            abstract toString()
+            equals()
+            hashCode()
+        }
 
-    class Dead {
-        isAlive()
-    }
-    StateBehavior <|.. Dead
-}
+        class Red extends Color {
+            getColor()
+            toString()
+        }
 
-package color {
-    interface Color{
+        class Blue extends Color {
+            getColor()
+            toString()
+        }
+
+        class Green extends Color {
+            getColor()
+            toString()
+        }
+
+        class Yellow extends Color {
+            getColor()
+            toString()
+        }
+
+        class Magenta extends Color {
+            getColor()
+            toString()
+        }
+
+        class White extends Color {
+            getColor()
+            toString()
+        }
+
+        class Black extends Color {
+            getColor()
+            toString()
+        }
+    }
+
+    package display {
+
+        package boarddisplay {
+            interface BoardDisplay {
+                displayBoard()
+            }
+
+            class LivingWhiteDeadBlackDisplay implements BoardDisplay, gameoflife.observer.Observer {
+                displayBoard()
+            }
+
+            class LivingBlackDeadWhiteDisplay implements BoardDisplay, gameoflife.observer.Observer{
+                displayBoard()
+            }
+
+            class RandomColorDisplay implements BoardDisplay, gameoflife.observer.Observer {
+                displayBoard()
+            }
+        }
+
+        package statisticsdisplay {
+            interface StatisticsDisplay {
+                displayStatistics()
+            }
+
+            class PopulationStatisticsDisplay implements StatisticsDisplay, gameoflife.observer.Observer {
+                displayStatistics()
+            }
+        }
+    }
+
+    package observer {
+        interface Observer {
+            update(Board board)
+        }
+
+        interface Subject {
+            registerObserver(Observer o)
+            removeObserver(Observer o)
+            notifyObservers()
+        }
+    }
+
+    class Cell {
+        StateBehavior state
+        Color color
+
+        Cell(StateBehavior state, Color color)
+        setState()
+        setColor()
         getColor()
     }
+    Cell::state -- StateBehavior
+    Cell::color -- Color
 
-    class Red{
-        getColor()
-    }
-    Color <|.. Red
+    class Board {
+        int rows
+        int columns
+        Cell[][] grid
 
-    class Blue{
-        getColor()
+        Board(int rows, int columns)
+        getCellAt(int row, int column)
+        setCellAt(int row, int column, Cell cell)
+        getLivingNeighbours(int row, int column)
     }
-    Color <|.. Blue
+    Board - "*" Cell
 
-    class Green{
-        getColor()
-    }
-    Color <|.. Green
+    class GameOfLife implements observer.Subject {
+        Board board
+        Rule rule
+        ColorRule colorRule
 
-    class Yellow{
-        getColor()
+        GameOfLife(int rows, int columns)
+        computeNextGeneration()
+        displayGrid()
+        setLivingCell(int row, int column)
+        setDeadCell(int row, int column)
     }
-    Color <|.. Yellow
-
-    class Magenta{
-        getColor()
-    }
-    Color <|.. Magenta
-
-    class White{
-        getColor()
-    }
-    Color <|.. White
+    GameOfLife::board -- Board
+    GameOfLife::rule --- Rule
+    GameOfLife::colorRule --- ColorRule
 }
-
-package display {
-    interface Display {
-        display()
-    }
-
-    class LivingWhiteDeadBlackDisplay {
-        display()
-    }
-    Display <|.. LivingWhiteDeadBlackDisplay
-
-    class LivingBlackDeadWhiteDisplay {
-        display()
-    }
-    Display <|.. LivingBlackDeadWhiteDisplay
-
-    class RandomColorDisplay {
-        display()
-    }
-    Display <|.. RandomColorDisplay
-}
-
-class Cell {
-    StateBehavior state
-    Color color
-
-    Cell(StateBehavior state, Color color)
-    setState()
-    setColor()
-    getColor()
-}
-Cell::state -- StateBehavior
-Cell::color -- Color
-
-class Board {
-    int rows
-    int columns
-    Cell[][] grid
-
-    Board(int rows, int columns)
-    getCellAt(int row, int column)
-    setCellAt(int row, int column, Cell cell)
-    getLivingNeighbours(int row, int column)
-}
-Board - "*" Cell
-
-class GameOfLife {
-    Board board
-    Rule rule
-    ColorRule colorRule
-    Display display
-
-    GameOfLife(int rows, int columns)
-    computeNextGeneration()
-    displayGrid()
-    setLivingCell(int row, int column)
-    setDeadCell(int row, int column)
-}
-GameOfLife::board -- Board
-GameOfLife::rule --- Rule
-GameOfLife::colorRule --- ColorRule
-GameOfLife::display --- Display
 
 @enduml
 
