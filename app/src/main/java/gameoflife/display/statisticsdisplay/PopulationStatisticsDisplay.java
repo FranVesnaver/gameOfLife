@@ -21,7 +21,7 @@ public class PopulationStatisticsDisplay implements StatisticsDisplay, Observer 
         statesAverage = new HashMap<>();
         colorsAverage = new HashMap<>();
         this.iterationsPerReport = iterationsPerAveragesReport;
-        this.currentIteration = 1;
+        this.currentIteration = 0;
     }
 
     @Override
@@ -31,9 +31,9 @@ public class PopulationStatisticsDisplay implements StatisticsDisplay, Observer 
         System.out.println("Cells by color: ");
         System.out.println(getColorStatistics());
         if (currentIteration % iterationsPerReport == 0) {
-            System.out.println("Promedio de estados:");
+            System.out.println("States average:");
             System.out.println(getStatesAverage());
-            System.out.println("Promedio de colores:");
+            System.out.println("Colors average:");
             System.out.println(getColorsAverage());
         }
     }
@@ -86,7 +86,7 @@ public class PopulationStatisticsDisplay implements StatisticsDisplay, Observer 
         StringBuilder result = new StringBuilder();
 
         for (StateBehavior state : statesAverage.keySet()) {
-            result.append("\t").append("Promedio ").append(state).append(": ").append((float) statesAverage.get(state) / (float) currentIteration);
+            result.append("\t").append(state).append(" average").append(": ").append((float) statesAverage.get(state) / (float) currentIteration);
         }
 
         return result.toString();
@@ -96,7 +96,7 @@ public class PopulationStatisticsDisplay implements StatisticsDisplay, Observer 
         StringBuilder result = new StringBuilder();
 
         for (Color color : colorsAverage.keySet()) {
-            result.append("\t").append("Promedio ").append(color).append(": ").append((float) colorsAverage.get(color) / (float) currentIteration).append("\n");
+            result.append("\t").append(color).append(" average").append(": ").append((float) colorsAverage.get(color) / (float) currentIteration).append("\n");
         }
 
         return result.toString();
