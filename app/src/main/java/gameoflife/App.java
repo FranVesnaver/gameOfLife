@@ -4,6 +4,7 @@ import gameoflife.display.boarddisplay.BoardDisplay;
 import gameoflife.display.boarddisplay.LivingWhiteDeadBlackBoardDisplay;
 import gameoflife.display.boarddisplay.RandomColorBoardDisplay;
 import gameoflife.display.statisticsdisplay.PopulationStatisticsDisplay;
+import gameoflife.display.statisticsdisplay.RulesAppliedDisplay;
 import gameoflife.display.statisticsdisplay.StatisticsDisplay;
 
 import java.util.Scanner;
@@ -13,7 +14,8 @@ public class App {
     public static void main(String[] args) throws InterruptedException {
         GameOfLife gameOfLife = new GameOfLife(10,10);
         BoardDisplay boardDisplay = new RandomColorBoardDisplay(gameOfLife);
-        StatisticsDisplay statisticsDisplay = new PopulationStatisticsDisplay(gameOfLife, 5);
+        StatisticsDisplay demographicStatisticsDisplay = new PopulationStatisticsDisplay(gameOfLife, 5);
+        StatisticsDisplay rulesStatisticsDisplay = new RulesAppliedDisplay(gameOfLife, 5);
         gameOfLife.notifyObservers();
 //        gameOfLife.setRule(new HighLifeRule());
 //        gameOfLife.setRule(new BreederRule());
@@ -26,7 +28,8 @@ public class App {
         Scanner scanner = new Scanner(System.in);
 
         boardDisplay.displayBoard();
-        statisticsDisplay.displayStatistics();
+        demographicStatisticsDisplay.displayStatistics();
+        rulesStatisticsDisplay.displayStatistics();
 
         // glider
         gameOfLife.setLivingCell(1, 2);
@@ -53,7 +56,8 @@ public class App {
 
         for (int i = 1; i <= generations; i++) {
             boardDisplay.displayBoard();
-            statisticsDisplay.displayStatistics();
+            demographicStatisticsDisplay.displayStatistics();
+            rulesStatisticsDisplay.displayStatistics();
             gameOfLife.computeNextGeneration();
 
             System.out.println("Generation: " + i);
