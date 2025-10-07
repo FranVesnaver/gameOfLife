@@ -125,14 +125,17 @@ package gameoflife {
 
             class LivingWhiteDeadBlackDisplay implements BoardDisplay, gameoflife.observer.Observer {
                 displayBoard()
+                update(Board board)
             }
 
             class LivingBlackDeadWhiteDisplay implements BoardDisplay, gameoflife.observer.Observer{
                 displayBoard()
+                update(Board board)
             }
 
             class RandomColorDisplay implements BoardDisplay, gameoflife.observer.Observer {
                 displayBoard()
+                update(Board board)
             }
         }
 
@@ -143,6 +146,7 @@ package gameoflife {
 
             class PopulationStatisticsDisplay implements StatisticsDisplay, gameoflife.observer.Observer {
                 displayStatistics()
+                update(Board board)
             }
         }
     }
@@ -187,12 +191,16 @@ package gameoflife {
         Board board
         Rule rule
         ColorRule colorRule
+        List<Observer> observers
 
         GameOfLife(int rows, int columns)
         computeNextGeneration()
-        displayGrid()
         setLivingCell(int row, int column)
         setDeadCell(int row, int column)
+
+        registerObserver(Observer o)
+        removeObserver(Observer o)
+        notifyObservers()
     }
     GameOfLife::board -- Board
     GameOfLife::rule --- Rule
