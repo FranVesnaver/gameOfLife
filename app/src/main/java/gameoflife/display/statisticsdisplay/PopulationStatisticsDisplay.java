@@ -11,9 +11,17 @@ import java.util.Map;
 
 public class PopulationStatisticsDisplay implements StatisticsDisplay, Observer {
     private Board board;
+    private Map<StateBehavior, Integer> statesAverage;
+    private Map<Color, Integer> colorsAverage;
+    private int iterationsPerReport;
+    private int currentIteration;
 
-    public PopulationStatisticsDisplay(Subject subject) {
+    public PopulationStatisticsDisplay(Subject subject, int iterationsPerAveragesReport) {
         subject.registerObserver(this);
+        statesAverage = new HashMap<>();
+        colorsAverage = new HashMap<>();
+        this.iterationsPerReport = iterationsPerAveragesReport;
+        this.currentIteration = 1;
     }
 
     @Override
@@ -22,11 +30,18 @@ public class PopulationStatisticsDisplay implements StatisticsDisplay, Observer 
         System.out.println(getStateStatistics());
         System.out.println("Cells by color: ");
         System.out.println(getColorStatistics());
+        if (currentIteration % iterationsPerReport == 0) {
+            System.out.println("Promedio de estados:");
+            System.out.println(getStatesAverage());
+            System.out.println("Promedio de colores:");
+            System.out.println(getColorsAverage());
+        }
     }
 
     @Override
     public void update(Board board) {
         this.board = board;
+        currentIteration++;
     }
 
     private String getStateStatistics() {
@@ -37,6 +52,7 @@ public class PopulationStatisticsDisplay implements StatisticsDisplay, Observer 
             for (int col = 0; col < board.getRows(); col++) {
                 StateBehavior currentCellState = board.getCellAt(row, col).getState();
                 states.put(currentCellState, states.getOrDefault(currentCellState, 0) + 1);
+                statesAverage.put(currentCellState, statesAverage.getOrDefault(currentCellState, 0) + 1);
             }
         }
 
@@ -55,11 +71,32 @@ public class PopulationStatisticsDisplay implements StatisticsDisplay, Observer 
             for (int col = 0; col < board.getRows(); col++) {
                 Color currentCellColor = board.getCellAt(row, col).getColor();
                 colors.put(currentCellColor, colors.getOrDefault(currentCellColor, 0) + 1);
+                colorsAverage.put(currentCellColor, colorsAverage.getOrDefault(currentCellColor, 0) + 1);
             }
         }
 
         for (Color color : colors.keySet()) {
             result.append("\t").append(color).append(": ").append(colors.get(color)).append(" cells").append("\n");
+        }
+
+        return result.toString();
+    }
+
+    private String getStatesAverage() {
+        StringBuilder result = new StringBuilder();
+
+        for (StateBehavior state : statesAverage.keySet()) {
+            result.append("\t").append("Promedio ").append(state).append(": ").append((float) statesAverage.get(state) / (float) currentIteration);
+        }
+
+        return result.toString();
+    }
+
+    private String getColorsAverage() {
+        StringBuilder result = new StringBuilder();
+
+        for (Color color : colorsAverage.keySet()) {
+            result.append("\t").append("Promedio ").append(color).append(": ").append((float) colorsAverage.get(color) / (float) currentIteration).append("\n");
         }
 
         return result.toString();
