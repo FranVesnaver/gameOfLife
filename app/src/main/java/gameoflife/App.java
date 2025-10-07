@@ -2,8 +2,7 @@ package gameoflife;
 
 import gameoflife.display.boarddisplay.BoardDisplay;
 import gameoflife.display.boarddisplay.LivingWhiteDeadBlackBoardDisplay;
-import gameoflife.display.boarddisplay.RandomColorBoardDisplay;
-import gameoflife.display.statisticsdisplay.PoblationalStatisticsDisplay;
+import gameoflife.display.statisticsdisplay.PopulationStatisticsDisplay;
 import gameoflife.display.statisticsdisplay.StatisticsDisplay;
 
 import java.util.Scanner;
@@ -13,7 +12,7 @@ public class App {
     public static void main(String[] args) throws InterruptedException {
         GameOfLife gameOfLife = new GameOfLife(10,10);
         BoardDisplay boardDisplay = new LivingWhiteDeadBlackBoardDisplay(gameOfLife);
-        StatisticsDisplay statisticsDisplay = new PoblationalStatisticsDisplay(gameOfLife);
+        StatisticsDisplay statisticsDisplay = new PopulationStatisticsDisplay(gameOfLife);
         gameOfLife.notifyObservers();
 //        gameOfLife.setRule(new HighLifeRule());
 //        gameOfLife.setRule(new BreederRule());

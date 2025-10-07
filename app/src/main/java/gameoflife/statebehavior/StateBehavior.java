@@ -1,4 +1,4 @@
-package gameoflife.stateBehavior;
+package gameoflife.statebehavior;
 
 public abstract class StateBehavior {
     public abstract boolean isAlive();

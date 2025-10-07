@@ -7,8 +7,8 @@ import gameoflife.rule.ClassicRule;
 import gameoflife.colorRule.ColorRule;
 import gameoflife.colorRule.NoColorRule;
 import gameoflife.rule.Rule;
-import gameoflife.stateBehavior.Alive;
-import gameoflife.stateBehavior.Dead;
+import gameoflife.statebehavior.Alive;
+import gameoflife.statebehavior.Dead;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package gameoflife.stateBehavior;
+package gameoflife.statebehavior;
 
 public class Alive extends StateBehavior {
     @Override

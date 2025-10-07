@@ -1,7 +1,7 @@
 package gameoflife;
 
 import gameoflife.color.Color;
-import gameoflife.stateBehavior.Dead;
+import gameoflife.statebehavior.Dead;
 
 import java.util.ArrayList;
 import java.util.List;

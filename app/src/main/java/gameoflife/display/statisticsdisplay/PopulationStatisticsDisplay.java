@@ -4,15 +4,15 @@ import gameoflife.Board;
 import gameoflife.color.Color;
 import gameoflife.observer.Observer;
 import gameoflife.observer.Subject;
-import gameoflife.stateBehavior.StateBehavior;
+import gameoflife.statebehavior.StateBehavior;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class PoblationalStatisticsDisplay implements StatisticsDisplay, Observer {
+public class PopulationStatisticsDisplay implements StatisticsDisplay, Observer {
     private Board board;
 
-    public PoblationalStatisticsDisplay(Subject subject) {
+    public PopulationStatisticsDisplay(Subject subject) {
         subject.registerObserver(this);
     }
 

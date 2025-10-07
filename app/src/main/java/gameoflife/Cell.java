@@ -2,7 +2,7 @@ package gameoflife;
 
 import gameoflife.color.Color;
 import gameoflife.color.White;
-import gameoflife.stateBehavior.StateBehavior;
+import gameoflife.statebehavior.StateBehavior;
 
 public class Cell {
     private StateBehavior state;
