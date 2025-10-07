@@ -148,6 +148,11 @@ package gameoflife {
                 displayStatistics()
                 update(Board board)
             }
+
+            class RulesAppliedDisplay implements StatisticsDisplay, gameoflife.observer.Observer {
+                displayStatistics()
+                update(Board board)
+            }
         }
     }
 
