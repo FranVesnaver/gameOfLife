@@ -232,7 +232,7 @@ package gameoflife {
     GameOfLife::board -- Board
     GameOfLife::rule --- Rule
     GameOfLife::colorRule --- ColorRule
-    GameOfLife --> AbstractGameFactory
+    GameOfLife::GameOfLife ---> AbstractGameFactory
 }
 
 @enduml
