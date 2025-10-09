@@ -1,4 +1,4 @@
-package gameoflife;
+package gameoflife.model;
 
 import gameoflife.gamemode.AbstractGameModeFactory;
 import gameoflife.observer.Observer;

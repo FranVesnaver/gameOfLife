@@ -1,10 +1,11 @@
 package gameoflife;
 
-import gameoflife.display.boarddisplay.BoardDisplay;
-import gameoflife.display.boarddisplay.LivingWhiteDeadBlackBoardDisplay;
-import gameoflife.display.statisticsdisplay.PopulationStatisticsDisplay;
-import gameoflife.display.statisticsdisplay.RulesAppliedDisplay;
-import gameoflife.display.statisticsdisplay.StatisticsDisplay;
+import gameoflife.model.GameOfLife;
+import gameoflife.view.boarddisplay.BoardDisplay;
+import gameoflife.view.boarddisplay.LivingWhiteDeadBlackBoardDisplay;
+import gameoflife.view.statisticsdisplay.PopulationStatisticsDisplay;
+import gameoflife.view.statisticsdisplay.RulesAppliedDisplay;
+import gameoflife.view.statisticsdisplay.StatisticsDisplay;
 import gameoflife.gamemode.ClassicModeFactory;
 
 import java.util.Scanner;

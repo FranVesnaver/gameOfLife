@@ -1,6 +1,6 @@
-package gameoflife.display.boarddisplay;
+package gameoflife.view.boarddisplay;
 
-import gameoflife.Board;
+import gameoflife.model.Board;
 import gameoflife.color.*;
 import gameoflife.observer.Observer;
 import gameoflife.observer.Subject;

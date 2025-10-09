@@ -1,6 +1,6 @@
-package gameoflife.display.statisticsdisplay;
+package gameoflife.view.statisticsdisplay;
 
-import gameoflife.Board;
+import gameoflife.model.Board;
 import gameoflife.observer.Observer;
 import gameoflife.observer.Subject;
 

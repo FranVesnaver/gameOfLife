@@ -1,4 +1,4 @@
-package gameoflife;
+package gameoflife.model;
 
 import gameoflife.color.Color;
 import gameoflife.color.White;

@@ -1,4 +1,4 @@
-package gameoflife.display.statisticsdisplay;
+package gameoflife.view.statisticsdisplay;
 
 public interface StatisticsDisplay {
     void displayStatistics();
