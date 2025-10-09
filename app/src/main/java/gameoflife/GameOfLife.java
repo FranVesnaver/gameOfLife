@@ -1,11 +1,10 @@
 package gameoflife;
 
+import gameoflife.gamemode.AbstractGameModeFactory;
 import gameoflife.observer.Observer;
 import gameoflife.observer.Subject;
 import gameoflife.color.Color;
-import gameoflife.rule.ClassicRule;
 import gameoflife.colorRule.ColorRule;
-import gameoflife.colorRule.NoColorRule;
 import gameoflife.rule.Rule;
 import gameoflife.statebehavior.Alive;
 import gameoflife.statebehavior.Dead;
@@ -21,10 +20,10 @@ public class GameOfLife implements Subject {
 
     private List<Observer> observers;
 
-    public GameOfLife(int rows, int columns) {
+    public GameOfLife(int rows, int columns, AbstractGameModeFactory factory) {
         board = new Board(rows, columns);
-        this.rule = new ClassicRule();
-        this.colorRule = new NoColorRule();
+        this.rule = factory.createRule();
+        this.colorRule = factory.createColorRule();
         observers = new ArrayList<>();
     }
 
