@@ -168,6 +168,28 @@ package gameoflife {
         }
     }
 
+    package gamemode {
+        interface AbstractGameFactory {
+            createRule(): Rule
+            createColorRule(): ColorRule
+        }
+
+        class ClassicModeFactory implements AbstractGameFactory {
+            createRule(): Rule
+            createColorRule(): ColorRule
+        }
+
+        class ImmigrationModeFactory implements AbstractGameFactory {
+            createRule(): Rule
+            createColorRule(): ColorRule
+        }
+
+        class HighLifeModeFactory implements AbstractGameFactory {
+            createRule(): Rule
+            createColorRule(): ColorRule
+        }
+    }
+
     class Cell {
         StateBehavior state
         Color color
@@ -198,7 +220,7 @@ package gameoflife {
         ColorRule colorRule
         List<Observer> observers
 
-        GameOfLife(int rows, int columns)
+        GameOfLife(int rows, int columns, AbstractGameFactory factory)
         computeNextGeneration()
         setLivingCell(int row, int column)
         setDeadCell(int row, int column)
@@ -210,6 +232,7 @@ package gameoflife {
     GameOfLife::board -- Board
     GameOfLife::rule --- Rule
     GameOfLife::colorRule --- ColorRule
+    GameOfLife --> AbstractGameFactory
 }
 
 @enduml
