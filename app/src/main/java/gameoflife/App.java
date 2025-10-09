@@ -2,28 +2,21 @@ package gameoflife;
 
 import gameoflife.display.boarddisplay.BoardDisplay;
 import gameoflife.display.boarddisplay.LivingWhiteDeadBlackBoardDisplay;
-import gameoflife.display.boarddisplay.RandomColorBoardDisplay;
 import gameoflife.display.statisticsdisplay.PopulationStatisticsDisplay;
 import gameoflife.display.statisticsdisplay.RulesAppliedDisplay;
 import gameoflife.display.statisticsdisplay.StatisticsDisplay;
+import gameoflife.gamemode.ClassicModeFactory;
 
 import java.util.Scanner;
 
 public class App {
 
     public static void main(String[] args) throws InterruptedException {
-        GameOfLife gameOfLife = new GameOfLife(10,10);
-        BoardDisplay boardDisplay = new RandomColorBoardDisplay(gameOfLife);
+        GameOfLife gameOfLife = new GameOfLife(10,10, new ClassicModeFactory());
+        BoardDisplay boardDisplay = new LivingWhiteDeadBlackBoardDisplay(gameOfLife);
         StatisticsDisplay demographicStatisticsDisplay = new PopulationStatisticsDisplay(gameOfLife, 5);
         StatisticsDisplay rulesStatisticsDisplay = new RulesAppliedDisplay(gameOfLife, 5);
         gameOfLife.notifyObservers();
-//        gameOfLife.setRule(new HighLifeRule());
-//        gameOfLife.setRule(new BreederRule());
-//        gameOfLife.setRule(new DiffusionRule());
-//        gameOfLife.setRule(new LifeWithoutDeathRule());
-
-//        gameOfLife.setColorRule(new RandomColorRule());
-//        gameOfLife.setColorRule(new ImmigrationColorRule());
 
         Scanner scanner = new Scanner(System.in);
 
