@@ -16,11 +16,11 @@ public class PopulationStatisticsDisplay implements StatisticsDisplay, Observer 
     private int iterationsPerReport;
     private int currentIteration;
 
-    public PopulationStatisticsDisplay(Subject subject, int iterationsPerAveragesReport) {
+    public PopulationStatisticsDisplay(Subject subject, int iterationsPerReport) {
         subject.registerObserver(this);
         statesAverage = new HashMap<>();
         colorsAverage = new HashMap<>();
-        this.iterationsPerReport = iterationsPerAveragesReport;
+        this.iterationsPerReport = iterationsPerReport;
         this.currentIteration = 0;
     }
 
