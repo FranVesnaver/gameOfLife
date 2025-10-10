@@ -116,7 +116,7 @@ package gameoflife {
         }
     }
 
-    package display {
+    package view {
 
         package boarddisplay {
             interface BoardDisplay {
@@ -154,6 +154,14 @@ package gameoflife {
                 update(Board board)
             }
         }
+
+        interface View {
+            startMessages()
+        }
+
+        class ConsoleView implements View {
+            startMessages()
+        }
     }
 
     package observer {
@@ -190,49 +198,77 @@ package gameoflife {
         }
     }
 
-    class Cell {
-        StateBehavior state
-        Color color
+    package controller {
+        class Controller {
+            GameOfLife model
+            BoardDisplay boardDisplay
+            List<StatisticsDisplay> statisticsDisplays
+            View view
 
-        Cell(StateBehavior state, Color color)
-        setState()
-        setColor()
-        getColor()
+            Controller(GameOfLife model)
+            startGameLoop()
+        }
+        Controller::model - gameoflife.model.GameOfLife
+        Controller::boardDisplay - BoardDisplay
+        Controller::statisticsDisplays - StatisticsDisplay
+        Controller::view - View
+
     }
-    Cell::state -- StateBehavior
-    Cell::color -- Color
 
-    class Board {
-        int rows
-        int columns
-        Cell[][] grid
+    package model {
 
-        Board(int rows, int columns)
-        getCellAt(int row, int column)
-        setCellAt(int row, int column, Cell cell)
-        getLivingNeighbours(int row, int column)
+        class Cell {
+            StateBehavior state
+            Color color
+
+            Cell(StateBehavior state, Color color)
+            setState()
+            setColor()
+            getColor()
+        }
+        Cell::state -- StateBehavior
+        Cell::color -- Color
+
+        class Board {
+            int rows
+            int columns
+            Cell[][] grid
+
+            Board(int rows, int columns)
+            getCellAt(int row, int column)
+            setCellAt(int row, int column, Cell cell)
+            getLivingNeighbours(int row, int column)
+        }
+        Board - "*" Cell
+
+        class GameOfLife implements gameoflife.observer.Subject {
+            Board board
+            Rule rule
+            ColorRule colorRule
+            List<Observer> observers
+
+            GameOfLife(int rows, int columns, AbstractGameFactory factory)
+            computeNextGeneration()
+            setLivingCell(int row, int column)
+            setDeadCell(int row, int column)
+
+            registerObserver(Observer o)
+            removeObserver(Observer o)
+            notifyObservers()
+        }
+        GameOfLife::board -- Board
+        GameOfLife::rule --- Rule
+        GameOfLife::colorRule --- ColorRule
+        GameOfLife::GameOfLife ---> AbstractGameFactory
     }
-    Board - "*" Cell
 
-    class GameOfLife implements observer.Subject {
-        Board board
-        Rule rule
-        ColorRule colorRule
-        List<Observer> observers
-
-        GameOfLife(int rows, int columns, AbstractGameFactory factory)
-        computeNextGeneration()
-        setLivingCell(int row, int column)
-        setDeadCell(int row, int column)
-
-        registerObserver(Observer o)
-        removeObserver(Observer o)
-        notifyObservers()
+    class App {
+        GameOfLife gameOfLife
+        Controller controller
+        main()
     }
-    GameOfLife::board -- Board
-    GameOfLife::rule --- Rule
-    GameOfLife::colorRule --- ColorRule
-    GameOfLife::GameOfLife ---> AbstractGameFactory
+    App - GameOfLife
+    App - Controller
 }
 
 @enduml
