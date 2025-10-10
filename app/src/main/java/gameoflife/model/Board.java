@@ -104,7 +104,7 @@ public class Board {
         return string.toString();
     }
 
-    private boolean isInTheGrid(int row, int column) {
+    public boolean isInTheGrid(int row, int column) {
         return  row >= 0 &&
                 row < rows &&
                 column >= 0 &&
