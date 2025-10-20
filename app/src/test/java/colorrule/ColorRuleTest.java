@@ -1,4 +1,4 @@
-package colorRule;
+package colorrule;
 
 import gameoflife.color.Blue;
 import gameoflife.color.Color;
